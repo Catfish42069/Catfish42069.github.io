@@ -1,10 +1,13 @@
 body    {
     text-align: center;
-    background-color: cyan;
+    background-color: #C4E4E1;
 }
 dt  {
     color: blue;
 }
 dd  {
     color: brown;
+}
+.address    {
+    color: red;
 }
