@@ -1,10 +1,10 @@
-dl  {
+body    {
     text-align: center;
+    background-color: cyan;
 }
 dt  {
-    color: cyan;
+    color: blue;
 }
-p   {
-    text-align: center;
-    color: orange;
+dd  {
+    color: brown;
 }
