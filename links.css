@@ -1,0 +1,122 @@
+/* ===== Global Reset and Base Styles ===== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    /* Background that repeats only vertically, filling width */
+    background-image: url("https://t4.ftcdn.net/jpg/06/81/34/29/360_F_681342927_XnHKRjZBQpDB5lL3dUs1Wd6ZgKnIlJVC.jpg");
+    background-repeat: repeat-y;
+    background-position: top center;
+    background-size: 100% auto;
+    padding: 2rem;
+    color: #333;
+  }
+  
+  h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #fff; /* White text for visibility */
+  }
+  
+  /* ===== Overall Container for People Sections ===== */
+  .people-container {
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  /* Each person-container holds:
+     1) A heading
+     2) A container of link buttons
+     We also set a partially transparent "overlay" background 
+     to fade each background image */
+  .person-container {
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    position: relative; /* so we can use an overlay if desired */
+    color: #333;
+  }
+  
+  /* ===========  ZIAN CONTAINER =========== */
+  .zian-container {
+    background: 
+      linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),
+      url("https://cdn.discordapp.com/avatars/832597135748104253/965f646ad28f2d703d1ac40014b10288.png?size=1024");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  
+  /* ===========  CODY CONTAINER =========== */
+  .cody-container {
+    background: 
+      linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),
+      url("https://hips.hearstapps.com/hmg-prod/images/big-mac-index-66574ee4103a5.jpg?crop=0.8888888888888888xw:1xh;center,top&resize=1200:*");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  
+  /* ===========  CLARK CONTAINER =========== */
+  .clark-container {
+    background:
+      linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),
+      url("https://media1.tenor.com/m/xfrW3Oy5494AAAAd/waiting-idk.gif");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  
+  /* ===========  NINO CONTAINER =========== */
+  .nino-container {
+    background:
+      linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),
+      url("https://media1.tenor.com/m/hHq85MuNLJQAAAAd/seulgi-red-velvet.gif");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  
+  /* ===== Title for each person's link section ===== */
+  .person-title {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+  }
+  
+  /* ===== Container that holds each person's list of links ===== */
+  .links-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  /* ===== Individual Link Buttons ===== */
+  .link-button {
+    display: inline-block;
+    text-decoration: none;
+    text-align: center;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #617a1c;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .link-button:hover {
+    background-color: #0e7b12;
+  }
+  
+  /* ===== Responsive: If you want columns on larger screens ===== */
+  @media (min-width: 768px) {
+    .people-container {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
