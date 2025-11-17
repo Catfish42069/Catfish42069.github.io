@@ -1,67 +1,1147 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Catfishes</title>
-    <link rel="stylesheet" type="text/css" href="mycss.css">
-    <link rel="stylesheet" type="text/css" href="fonts.css">
-  <script src="myjs.js"></script>
-  <style>
-    address {
-      text-align: left;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIBOL Project - Find Your Path at DLSU</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --dlsu-green: #00693E;
+            --dlsu-white: #FFFFFF;
+            --dlsu-grey: #F4F4F4;
+            --dlsu-gold: #C5A572;
+            --text-dark: #1a1a1a;
+            --text-light: #666;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('HenrySy.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--dlsu-white);
+            padding: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .cta-button {
+            background: var(--dlsu-green);
+            color: var(--dlsu-white);
+            padding: 1.2rem 3rem;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            font-weight: 600;
+        }
+
+        .cta-button:hover {
+            background: #005030;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .reality-check {
+            padding: 5rem 2rem;
+            background: var(--dlsu-white);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .card {
+            background: var(--dlsu-grey);
+            padding: 2rem;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .card h3 {
+            color: var(--dlsu-green);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        /* College Grid */
+        .college-grid {
+            padding: 5rem 2rem;
+            background: var(--dlsu-grey);
+        }
+
+        .college-grid h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--dlsu-green);
+            text-transform: uppercase;
+        }
+
+        .colleges {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .college-card {
+            background: var(--dlsu-white);
+            padding: 2.5rem;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 3px solid transparent;
+        }
+
+        .college-card:hover {
+            background: var(--dlsu-green);
+            color: var(--dlsu-white);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 105, 62, 0.3);
+        }
+
+        .college-card .acronym {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--dlsu-green);
+            margin-bottom: 0.5rem;
+        }
+
+        .college-card:hover .acronym {
+            color: var(--dlsu-white);
+        }
+
+        .college-card .full-name {
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        /* College Detail Page */
+        .college-detail {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .college-detail.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .back-button {
+            background: var(--dlsu-green);
+            color: var(--dlsu-white);
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            margin: 2rem;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: #005030;
+        }
+
+        .college-header {
+            background: var(--dlsu-green);
+            color: var(--dlsu-white);
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .college-header h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .college-header .acronym-large {
+            font-size: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .vibe-section {
+            padding: 3rem 2rem;
+            background: var(--dlsu-grey);
+        }
+
+        .vibe-badge {
+            background: var(--dlsu-white);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 5px solid var(--dlsu-green);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .vibe-badge h3 {
+            color: var(--dlsu-green);
+            margin-bottom: 1rem;
+        }
+
+        .is-this-you {
+            padding: 4rem 2rem;
+            background: var(--dlsu-white);
+        }
+
+        .is-this-you h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--dlsu-green);
+        }
+
+        .two-columns {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .column {
+            padding: 2rem;
+            border-radius: 10px;
+        }
+
+        .column.interests {
+            background: #e8f5e9;
+        }
+
+        .column.skills {
+            background: #f5f5f5;
+        }
+
+        .column h3 {
+            color: var(--dlsu-green);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .column ul {
+            list-style: none;
+        }
+
+        .column li {
+            padding: 0.7rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .column li:before {
+            content: "✓";
+            color: var(--dlsu-green);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .degrees-section {
+            padding: 4rem 2rem;
+            background: var(--dlsu-grey);
+        }
+
+        .degrees-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--dlsu-green);
+        }
+
+        .accordion {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .accordion-item {
+            background: var(--dlsu-white);
+            margin-bottom: 1rem;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .accordion-header {
+            background: var(--dlsu-green);
+            color: var(--dlsu-white);
+            padding: 1.5rem;
+            cursor: pointer;
+            font-size: 1.3rem;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .accordion-header:hover {
+            background: #005030;
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            padding: 0 1.5rem;
+        }
+
+        .accordion-content.active {
+            max-height: 2000px;
+            padding: 1.5rem;
+        }
+
+        .degree-list {
+            list-style: none;
+        }
+
+        .degree-list li {
+            padding: 0.8rem;
+            border-bottom: 1px solid var(--dlsu-grey);
+        }
+
+        .degree-badge {
+            display: inline-block;
+            background: var(--dlsu-gold);
+            color: var(--dlsu-white);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin-left: 0.5rem;
+            font-weight: 600;
+        }
+
+        .careers-section {
+            padding: 4rem 2rem;
+            background: var(--dlsu-white);
+        }
+
+        .careers-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--dlsu-green);
+        }
+
+        .career-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .career-pill {
+            background: var(--dlsu-green);
+            color: var(--dlsu-white);
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .career-pill:hover {
+            background: #005030;
+            transform: scale(1.05);
+        }
+
+        .career-pill.unexpected {
+            background: var(--dlsu-gold);
+        }
+
+        .lasallian-advantage {
+            padding: 4rem 2rem;
+            background: var(--dlsu-grey);
+        }
+
+        .lasallian-advantage h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--dlsu-green);
+        }
+
+        .advantage-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 2rem auto;
+        }
+
+        .advantage-item {
+            text-align: center;
+            padding: 1.5rem;
+        }
+
+        .advantage-item h3 {
+            color: var(--dlsu-green);
+            margin: 1rem 0;
+        }
+
+        .history-section {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: var(--dlsu-white);
+            border-radius: 10px;
+        }
+
+        footer {
+            background: var(--dlsu-green);
+            color: var(--dlsu-white);
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .college-header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
 </head>
-<body style="cursor:crosshair">
-  <section>
-    <img src="Catfish.jpg" height="200" length="200">
-    <h1><strong>The Catfish</strong></h1>
-    <p>This website is dedicated and commited to the hating presentations</p>
-  </section>
-  <section>
-    <dl>
-      <dt><b>What is a presentation?</b></dt>
-      <dd><br>It is one of hell's creations.</dd><br>
-      <dt>Okay, but what about it?</dt>
-      <dd><pre><br style="text-align: justify;">## The Dislike for Presentations: An Essay
+<body>
+    <!-- Landing Page -->
+    <div id="landing-page">
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1>Is the Future Unclear?</h1>
+            <p>Connect your interests to the right DLSU College.</p>
+            <a href="#college-grid" class="cta-button">Find Your Path</a>
+        </section>
 
-### Introduction
+        <!-- Reality Check Section -->
+        <section class="reality-check">
+            <div class="container">
+                <div class="cards-grid">
+                    <div class="card">
+                        <h3>Unsure about your major?</h3>
+                        <p>95% of students surveyed said they're looking for extra context about college degrees. You're not alone in this journey.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Terrified of the job market?</h3>
+                        <p>96% want to know more about possible careers. Let's explore where each college can take you.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Looking for the Lasallian Advantage?</h3>
+                        <p>Being in DLSU gives you a unique edge. Let's maximize it through informed decisions.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-Presentations are a ubiquitous part of both academic and professional life. They are designed to convey information, persuade audiences, and demonstrate knowledge. Despite their prevalence and supposed benefits, many individuals, including myself, harbor a profound dislike for presentations. This essay will explore the reasons behind this aversion, examining the anxiety they induce, the inherent flaws in their structure, and the often-unrealistic expectations they impose.
+        <!-- College Grid -->
+        <section class="college-grid" id="college-grid">
+            <div class="container">
+                <h2>Explore DLSU Colleges</h2>
+                <div class="colleges" id="college-cards">
+                    <!-- College cards will be generated by JavaScript -->
+                </div>
+            </div>
+        </section>
+    </div>
 
-### Anxiety and Public Speaking
+    <!-- College Detail Pages -->
+    <div id="college-pages"></div>
 
-The primary reason for my dislike of presentations is the anxiety they provoke. Public speaking is widely recognized as a common fear, often ranked higher than the fear of death. The pressure to perform well in front of an audience can be overwhelming. The anticipation of judgment, the fear of making mistakes, and the spotlight effect contribute to a heightened state of stress. For those who are introverted or suffer from social anxiety, the prospect of presenting can be particularly daunting, making the entire experience deeply unpleasant.
+    <footer>
+        <p>&copy; 2025 SIBOL Project | Group 7 - Personal Development</p>
+        <p>Cathlin Go • Clark Chuck • Einer Lagamayo • Matteo Adriano • Yochabel Reynes</p>
+    </footer>
 
-### Flaws in Presentation Structure
+    <script>
+        // College Data
+        const colleges = {
+            gcoe: {
+                acronym: "GCoE",
+                name: "Gokongwei College of Engineering",
+                reputation: "Known for its high workload but recognized as an innovation hub with strong emphasis on research and modern facilities.",
+                interests: [
+                    "Finding solutions to problems",
+                    "Programming and robotics",
+                    "STEM subjects (especially math and science)",
+                    "Continuous learning with new technologies"
+                ],
+                skills: [
+                    "Critical and logical thinking",
+                    "Problem-solving abilities",
+                    "Proficiency in technology",
+                    "Analytical skills"
+                ],
+                undergrad: [
+                    "BS Chemical Engineering",
+                    "BS Civil Engineering",
+                    "BS Computer Engineering",
+                    "BS Electronics Engineering",
+                    "BS Industrial Engineering",
+                    "BS Industrial Engineering with specialization in Data Analytics",
+                    "BS Industrial Engineering with specialization in Information Technology",
+                    "BS Industrial Engineering with specialization in Service Management",
+                    { name: "BS Industrial Engineering (Honors) and Master of Science in Industrial Engineering", badge: "Honors" },
+                    "BS Manufacturing and Robotics Engineering with specialization in Industrial Robotics Systems",
+                    "BS Manufacturing and Robotics Engineering with specialization in Human Robot Interaction",
+                    "BS Mechanical Engineering with Specialization in Mechatronics Engineering",
+                    { name: "BS Mechanical Engineering (Honors) with specialization in Mechatronics Engineering and Master of Science in Mechanical Engineering", badge: "Honors" },
+                    { name: "BS Chemical Engineering (Honors) and Master of Science in Chemical Engineering", badge: "Honors" },
+                    { name: "BS Civil Engineering (Honors) and Master of Science in Civil Engineering", badge: "Honors" },
+                    { name: "BS Electronics Engineering (Honors) and Master of Science in Electronics and Communications Engineering", badge: "Honors" },
+                    { name: "BS Manufacturing Engineering and Management with specialization in Mechatronics and Robotics Engineering and Master of Science in Manufacturing Engineering", badge: "Honors" }
+                ],
+                graduate: [
+                    "Biomedical Engineering (MS)",
+                    "Chemical Engineering (PhD, MEng, MS)",
+                    "Civil Engineering (PhD, MEng, MS)",
+                    "Computer Engineering (PhD, MS)",
+                    "Electronics and Communications Engineering (PhD, MEng, MS)",
+                    "Environmental Engineering and Management (MS)",
+                    "Industrial Engineering (PhD, MEng, MS)",
+                    "Mechanical Engineering (PhD, MEng, MS)",
+                    "Manufacturing Engineering (PhD, MEng, MS)",
+                    "Ports and Harbors Engineering and Management (MS)"
+                ],
+                careers: [
+                    "Chemical Engineer",
+                    "Computer Engineer",
+                    "Industrial Engineer",
+                    "Biomedical Engineer",
+                    "Mechanical Engineer",
+                    "Civil Engineer",
+                    "Electrical Engineer",
+                    "Manufacturing Engineer",
+                    "Robotics Engineer",
+                    "Data Analyst",
+                    "Management Consultant",
+                    "Research Scientist"
+                ],
+                unexpectedCareers: [
+                    "Finance Analyst",
+                    "Technical Writer",
+                    "Law Enforcement",
+                    "Aviation Specialist"
+                ],
+                history: "Established in 1947 to help young men rehabilitate the country after World War II. Originally located in Velasco Hall, it was renamed after donor John Gokongwei in 2011 and relocated to Gokongwei Hall.",
+                benefits: [
+                    "Center of Excellence designation",
+                    "Modern laboratories and equipment",
+                    "Strong industry connections",
+                    "Emphasis on research opportunities",
+                    "High accreditation percentages"
+                ]
+            },
+            cos: {
+                acronym: "CoS",
+                name: "College of Science",
+                reputation: "Research-focused college known for rigorous scientific training and laboratory work.",
+                interests: [
+                    "Science (especially life and physical sciences)",
+                    "Finding solutions to problems",
+                    "Understanding how things work",
+                    "Being observant and analytical"
+                ],
+                skills: [
+                    "Critical and logical thinking",
+                    "Problem-solving abilities",
+                    "Analytical skills",
+                    "Laboratory knowledge and techniques"
+                ],
+                undergrad: [
+                    "BS Biochemistry",
+                    "BS Biology major in Medical Biology",
+                    "BS Biology major in Molecular Biology and Biotechnology",
+                    "BS Biology major in Systematics and Ecology",
+                    "BS Chemistry",
+                    "BS Chemistry major in Food Science",
+                    "BS Chemistry minor in Business Studies",
+                    "BS Human Biology",
+                    "BS Mathematics with specialization in Business Applications",
+                    "BS Mathematics with specialization in Computer Applications",
+                    "BS Statistics Major in Actuarial Science",
+                    "BS Physics Minor in Economics",
+                    "BS Physics Minor in Finance",
+                    "BS Physics with specialization in Materials Science",
+                    "BS Physics with specialization in Medical Instrumentation",
+                    "BS Premed Physics",
+                    "BS Animal Biology"
+                ],
+                graduate: [
+                    "PhD in Biology, Chemistry, Mathematics, Physics",
+                    "MS in Biology, Chemistry, Mathematics, Statistics, Physics, Applied Physics",
+                    "Master in Environmental Science and Ecosystem Management",
+                    "Master in Physics (non-thesis)"
+                ],
+                careers: [
+                    "Research Scientist",
+                    "Lab Technician",
+                    "Biotechnician",
+                    "Chemist",
+                    "Physicist",
+                    "Microbiologist",
+                    "Biologist",
+                    "Mathematician",
+                    "Specialized Teacher",
+                    "Technologist"
+                ],
+                unexpectedCareers: [
+                    "Doctor (with further education)",
+                    "Physician"
+                ],
+                history: "Originally part of the College of Arts and Science, it split in 1982 to form the College of Science and College of Liberal Arts.",
+                benefits: [
+                    "Research-intensive environment",
+                    "Industry connections",
+                    "Quality laboratory facilities",
+                    "Strong graduate program pathways"
+                ]
+            },
+            ccs: {
+                acronym: "CCS",
+                name: "College of Computer Studies",
+                reputation: "Premier computer science institution in the Philippines with cutting-edge technology focus.",
+                interests: [
+                    "Programming and software development",
+                    "Problem-solving through technology",
+                    "Innovation and creativity",
+                    "Staying current with tech trends"
+                ],
+                skills: [
+                    "Logical and computational thinking",
+                    "Programming proficiency",
+                    "Analytical problem-solving",
+                    "Attention to detail"
+                ],
+                undergrad: [
+                    "BS Computer Science",
+                    "BS Computer Science with specialization in Software Technology",
+                    "BS Computer Science with specialization in Network and Information Security"
+                ],
+                graduate: [
+                    "MS Computer Science",
+                    "PhD Computer Science"
+                ],
+                careers: [
+                    "Software Developer",
+                    "Systems Analyst",
+                    "Network Administrator",
+                    "Cybersecurity Specialist",
+                    "Data Scientist",
+                    "AI/ML Engineer",
+                    "Game Developer",
+                    "IT Consultant"
+                ],
+                unexpectedCareers: [
+                    "Digital Marketing Specialist",
+                    "Product Manager"
+                ],
+                history: "Details to be added based on additional research.",
+                benefits: [
+                    "Industry-leading curriculum",
+                    "Strong tech industry partnerships",
+                    "Modern computer laboratories",
+                    "Active research programs"
+                ]
+            },
+            bagced: {
+                acronym: "BAGCED",
+                name: "Br. Andrew Gonzales College of Education",
+                reputation: "Leading education college preparing future educators and educational leaders.",
+                interests: [
+                    "Teaching and mentoring",
+                    "Child development",
+                    "Curriculum design",
+                    "Educational innovation"
+                ],
+                skills: [
+                    "Communication skills",
+                    "Patience and empathy",
+                    "Organizational abilities",
+                    "Creative thinking"
+                ],
+                undergrad: [
+                    "Education programs"
+                ],
+                graduate: [
+                    "Masters and Doctoral programs in Education"
+                ],
+                careers: [
+                    "Teacher",
+                    "School Administrator",
+                    "Curriculum Developer",
+                    "Educational Consultant",
+                    "Instructional Designer"
+                ],
+                unexpectedCareers: [
+                    "Corporate Trainer",
+                    "Educational Technology Specialist"
+                ],
+                history: "Details to be added based on additional research.",
+                benefits: [
+                    "Practicum opportunities",
+                    "Expert faculty",
+                    "Educational research focus"
+                ]
+            },
+            cob: {
+                acronym: "CoB",
+                name: "Ramon V. Del Rosario College of Business",
+                reputation: "Top business school in the Philippines, known for producing successful entrepreneurs and business leaders. Often perceived as the most 'Lasallian-stereotypical' college.",
+                interests: [
+                    "Business and entrepreneurship",
+                    "Leadership and management",
+                    "Market trends and analysis",
+                    "Strategic thinking"
+                ],
+                skills: [
+                    "Communication skills",
+                    "Reading comprehension",
+                    "Data analysis",
+                    "Critical thinking"
+                ],
+                undergrad: [
+                    "BS Accountancy",
+                    "BS Advertising Management",
+                    "BS Applied Corporate Management",
+                    "BS Business Management",
+                    "BS Entrepreneurship",
+                    "BS Interdisciplinary Business Studies",
+                    "BS Legal Management",
+                    "BS Management of Financial Institutions",
+                    "BS Marketing Management",
+                    "BS Management Accounting, Specialization in Business Analytics"
+                ],
+                graduate: [
+                    "Masters and Doctoral programs in Business"
+                ],
+                careers: [
+                    "Business Manager",
+                    "Financial Analyst",
+                    "Marketing Specialist",
+                    "Accountant",
+                    "Entrepreneur",
+                    "Management Consultant",
+                    "Business Analyst"
+                ],
+                unexpectedCareers: [
+                    "Non-profit Manager",
+                    "Government Policy Advisor"
+                ],
+                history: "Established in 1920 as the College of Commerce. Named after Ramon V. del Rosario in 2011 to honor his legacy as an entrepreneur and ambassador. It is currently the largest college within the University.",
+                benefits: [
+                    "Ranked top business school by Times Higher Education",
+                    "CHED Center of Excellence in Accountancy",
+                    "Strong industry connections",
+                    "Extensive alumni network"
+                ]
+            },
+            sol: {
+                acronym: "SoL",
+                name: "Tañada-Diokno School of Law",
+                reputation: "Focused legal education for students committed to pursuing law.",
+                interests: [
+                    "Law and justice",
+                    "Advocacy and debate",
+                    "Policy and governance",
+                    "Critical analysis of legal issues"
+                ],
+                skills: [
+                    "Communication and persuasion",
+                    "Reading comprehension",
+                    "Critical thinking",
+                    "Judgment and reasoning"
+                ],
+                undergrad: [
+                    "Bachelor of Arts in Legal Studies and Sustainable Development"
+                ],
+                graduate: [
+                    "Juris Doctor (JD)"
+                ],
+                careers: [
+                    "Lawyer",
+                    "Legal Consultant",
+                    "Policy Analyst",
+                    "Paralegal",
+                    "Government Official"
+                ],
+                unexpectedCareers: [
+                    "Compliance Officer",
+                    "Human Rights Advocate"
+                ],
+                history: "Established in 2009, offering specialized legal education.",
+                benefits: [
+                    "Focused legal curriculum",
+                    "Experienced legal practitioners as faculty",
+                    "Strong emphasis on ethics and social justice"
+                ]
+            },
+            cola: {
+                acronym: "CoLA",
+                name: "College of Liberal Arts",
+                reputation: "Diverse college offering humanities and social sciences programs with emphasis on communication and critical thinking.",
+                interests: [
+                    "Understanding others and society",
+                    "History and culture",
+                    "Philosophy and critical analysis",
+                    "Communication and media"
+                ],
+                skills: [
+                    "Great communication skills",
+                    "Problem-solving abilities",
+                    "Research capabilities",
+                    "Critical thinking"
+                ],
+                undergrad: [
+                    "BA Behavioral Sciences, Major in Organizational and Social Systems Development",
+                    "BA Development Studies",
+                    "BA History",
+                    "BA Southeast Asian Studies",
+                    "AB International Studies (American, European, Japanese, Chinese Studies)",
+                    "BA Literature (Creative Writing, Literary and Cultural Studies)",
+                    "BA Philippine Studies, Major in Filipino in Mass Media",
+                    "BA Political Science",
+                    "BA Communication Arts",
+                    "BA Organizational Communication",
+                    "AB Philosophy",
+                    "BA Psychology",
+                    "BS Psychology",
+                    "AB Sociology",
+                    { name: "BA (Honors) and MA in Behavioral Sciences", badge: "Honors" }
+                ],
+                graduate: [
+                    "Doctoral and Masters programs in various Liberal Arts fields",
+                    "PhD in Political Science, Applied Theology, Development Studies, Literature, Philosophy, Philippine Studies, Psychology, Sociology, History"
+                ],
+                careers: [
+                    "Human Resources Specialist",
+                    "Content Writer",
+                    "Social Media Manager",
+                    "Marketing Associate",
+                    "Public Relations Officer",
+                    "Management Trainee",
+                    "Market Researcher",
+                    "Journalist",
+                    "Teacher/Professor",
+                    "Government Researcher",
+                    "NGO Program Officer"
+                ],
+                unexpectedCareers: [
+                    "Policy Analyst",
+                    "Customer Success Manager"
+                ],
+                history: "Founded in 1918 as the College of Arts and Sciences. In 1982, it was divided into the College of Liberal Arts and the College of Science.",
+                benefits: [
+                    "Strong networking opportunities",
+                    "Real-world application focus",
+                    "Prime location",
+                    "Diverse program offerings"
+                ]
+            },
+            soe: {
+                acronym: "SoE",
+                name: "Carlos L. Tiu School of Economics",
+                reputation: "Over 50 years of leadership in economics education and research with strong public and private sector engagement.",
+                interests: [
+                    "Business and economics",
+                    "Politics and policy",
+                    "Research and data analysis",
+                    "Understanding market dynamics"
+                ],
+                skills: [
+                    "Analytical abilities",
+                    "Quantitative skills",
+                    "Computer literacy",
+                    "Critical thinking"
+                ],
+                undergrad: [
+                    { name: "BS Applied Economics (Honors) and MS Economics", badge: "Honors" },
+                    "BS Applied Economics Major in Industrial Economics",
+                    "BS Applied Economics Major in Financial Economics",
+                    "AB Economics",
+                    "Double degree programs with various CoB degrees"
+                ],
+                graduate: [
+                    "Diploma in Development Economics",
+                    "Master in Applied Economics",
+                    "MS Economics",
+                    "PhD Economics"
+                ],
+                careers: [
+                    "Economist",
+                    "Financial Analyst",
+                    "Policy Analyst",
+                    "Business Analyst",
+                    "Market Research Analyst",
+                    "Professor/Lecturer",
+                    "Data Analyst"
+                ],
+                unexpectedCareers: [
+                    "Investment Banker",
+                    "Economic Consultant"
+                ],
+                history: "Established in 1961 with Dr. Bernardo Villegas as its first Chairman. Became a School in 2010 after being part of the College of Business and Economics.",
+                benefits: [
+                    "Strong networking opportunities",
+                    "Quality faculty with industry experience",
+                    "Clear graduate program pathways",
+                    "First economics program assessed by ASEAN Universities Network"
+                ]
+            }
+        };
 
-Another factor contributing to my aversion is the inherent flaws in the structure of presentations. Often, presentations are designed to fit within a rigid framework that does not accommodate the varied learning styles of the audience. The over-reliance on visual aids like PowerPoint slides can lead to information overload, where the audience is bombarded with data, charts, and bullet points, detracting from the core message. Additionally, the time constraints of presentations can force speakers to rush through material, leading to a superficial treatment of complex topics.
+        // Generate college cards
+        const collegeCardsContainer = document.getElementById('college-cards');
+        Object.keys(colleges).forEach(collegeId => {
+            const college = colleges[collegeId];
+            const card = document.createElement('div');
+            card.className = 'college-card';
+            card.onclick = () => showCollege(collegeId);
+            card.innerHTML = `
+                <div class="acronym">${college.acronym}</div>
+                <div class="full-name">${college.name}</div>
+            `;
+            collegeCardsContainer.appendChild(card);
+        });
 
-### Unrealistic Expectations
+        // Generate college detail pages
+        const collegePagesContainer = document.getElementById('college-pages');
+        Object.keys(colleges).forEach(collegeId => {
+            const college = colleges[collegeId];
+            
+            const page = document.createElement('div');
+            page.className = 'college-detail';
+            page.id = `college-${collegeId}`;
+            
+            let undergradHTML = '';
+            college.undergrad.forEach(degree => {
+                if (typeof degree === 'string') {
+                    undergradHTML += `<li>${degree}</li>`;
+                } else {
+                    undergradHTML += `<li>${degree.name} <span class="degree-badge">${degree.badge}</span></li>`;
+                }
+            });
 
-Presentations also impose unrealistic expectations on individuals. There is an underlying assumption that everyone can excel at public speaking and effectively communicate their ideas in a polished, engaging manner. This expectation overlooks the fact that effective communication is a skill that not everyone possesses or can develop to the same degree. The emphasis on presentation skills can overshadow the actual content and expertise of the presenter, placing undue pressure on individuals to perform rather than to share knowledge meaningfully.
+            let graduateHTML = '';
+            college.graduate.forEach(degree => {
+                graduateHTML += `<li>${degree}</li>`;
+            });
 
-### Alternatives to Traditional Presentations
+            let careersHTML = '';
+            college.careers.forEach(career => {
+                careersHTML += `<span class="career-pill">${career}</span>`;
+            });
 
-Given these challenges, it is worth considering alternatives to traditional presentations. Interactive workshops, collaborative projects, and written reports can serve as more inclusive and less anxiety-inducing methods of information sharing. These alternatives allow for a deeper exploration of subjects and accommodate diverse communication styles. By shifting the focus from performance to content, individuals can engage more authentically with their material and their audience.
+            college.unexpectedCareers.forEach(career => {
+                careersHTML += `<span class="career-pill unexpected">${career}</span>`;
+            });
 
-### Conclusion
+            let benefitsHTML = '';
+            college.benefits.forEach(benefit => {
+                benefitsHTML += `
+                    <div class="advantage-item">
+                        <h3>✓</h3>
+                        <p>${benefit}</p>
+                    </div>
+                `;
+            });
 
-In conclusion, my dislike for presentations stems from the anxiety they induce, the flaws in their structure, and the unrealistic expectations they impose. While presentations are a staple of modern education and professional environments, it is important to recognize their limitations and explore alternative methods of communication. By doing so, we can create a more inclusive and less stressful environment for sharing knowledge and ideas.</pre></dd>
-           <dt>What other cool things are there?</dt>
-           <dd><a href="habitat.html"><button>Habitat</button></a><a href="catfish.html"><button>Kinds</button></a></dd>
-    </dl>
-  </section>
-  <section>
-  </section>
+            let interestsHTML = '';
+            college.interests.forEach(interest => {
+                interestsHTML += `<li>${interest}</li>`;
+            });
+
+            let skillsHTML = '';
+            college.skills.forEach(skill => {
+                skillsHTML += `<li>${skill}</li>`;
+            });
+
+            page.innerHTML = `
+                <button class="back-button" onclick="showLanding()">← Back to Colleges</button>
+                
+                <div class="college-header">
+                    <h1>${college.name}</h1>
+                    <div class="acronym-large">${college.acronym}</div>
+                </div>
+
+                <section class="vibe-section">
+                    <div class="container">
+                        <div class="vibe-badge">
+                            <h3>💭 The Reputation</h3>
+                            <p>${college.reputation}</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="is-this-you">
+                    <div class="container">
+                        <h2>Is This You?</h2>
+                        <div class="two-columns">
+                            <div class="column interests">
+                                <h3>💡 Your Interests</h3>
+                                <ul>${interestsHTML}</ul>
+                            </div>
+                            <div class="column skills">
+                                <h3>🧠 Required Skills</h3>
+                                <ul>${skillsHTML}</ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="degrees-section">
+                    <div class="container">
+                        <h2>Degree Programs</h2>
+                        <div class="accordion">
+                            <div class="accordion-item">
+                                <div class="accordion-header" onclick="toggleAccordion(this)">
+                                    Undergraduate Degrees
+                                    <span>▼</span>
+                                </div>
+                                <div class="accordion-content active">
+                                    <ul class="degree-list">${undergradHTML}</ul>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header" onclick="toggleAccordion(this)">
+                                    Graduate Studies
+                                    <span>▼</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <ul class="degree-list">${graduateHTML}</ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="careers-section">
+                    <div class="container">
+                        <h2>Where ${college.acronym} Can Take You</h2>
+                        <div class="career-cloud">
+                            ${careersHTML}
+                        </div>
+                        <p style="text-align: center; margin-top: 2rem; color: var(--text-light);">
+                            <em>Gold badges indicate unexpected career paths, showing the versatility of this degree.</em>
+                        </p>
+                    </div>
+                </section>
+
+                <section class="lasallian-advantage">
+                    <div class="container">
+                        <h2>The Lasallian Advantage</h2>
+                        <div class="history-section">
+                            <h3 style="color: var(--dlsu-green); margin-bottom: 1rem;">History</h3>
+                            <p>${college.history}</p>
+                        </div>
+                        <div class="advantage-grid">
+                            ${benefitsHTML}
+                        </div>
+                    </div>
+                </section>
+            `;
+            
+            collegePagesContainer.appendChild(page);
+        });
+
+        // Navigation functions
+        function showCollege(collegeId) {
+            document.getElementById('landing-page').classList.add('hidden');
+            document.querySelectorAll('.college-detail').forEach(page => {
+                page.classList.remove('active');
+            });
+            document.getElementById(`college-${collegeId}`).classList.add('active');
+            window.scrollTo(0, 0);
+        }
+
+        function showLanding() {
+            document.getElementById('landing-page').classList.remove('hidden');
+            document.querySelectorAll('.college-detail').forEach(page => {
+                page.classList.remove('active');
+            });
+            window.scrollTo(0, 0);
+        }
+
+        function toggleAccordion(header) {
+            const content = header.nextElementSibling;
+            const icon = header.querySelector('span');
+            
+            content.classList.toggle('active');
+            icon.textContent = content.classList.contains('active') ? '▲' : '▼';
+        }
+
+        // Smooth scroll for CTA button
+        document.querySelector('.cta-button').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelector('#college-grid').scrollIntoView({ 
+                behavior: 'smooth' 
+            });
+        });
+    </script>
 </body>
-<article>
-  <address class="address">
-    Made by Anothy Mamder<br>
-    Visit me <a href="anothy.html">here</a><br>
-    19 Catleya Palm St, St Joseph Vil<br>
-    PH <a href="https://www.canva.com/design/DAGbiYSvPTE/MjLCV7xsXRW47qBiJUVRyA/view?utm_content=DAGbiYSvPTE&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h62a839dc8dutm_content=DAGYvcAiEbU&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=hf81246baa6utm_content=DAGOTb70ll0&utm_campaign=designshare&utm_medium=link&utm_source=editorutm_content=DAGMZdSsuUU&utm_campaign=designshare&utm_medium=link&utm_source=editor"><button>Presentation</button</a>
-    <a href="https://www.canva.com/design/DAGYa0xJKtc/vo4ICsfZ4Z8HmC2DWK4elA/edit?utm_content=DAGYa0xJKtc&utm_campaign=designshare&utm_medium=link2&utm_source=sharebuttonutm_content=DAGYYSm7PJE&utm_campaign=designshare&utm_medium=link2&utm_source=sharebuttonutm_content=DAGNisyIixI&utm_campaign=designshare&utm_medium=link&utm_source=editor"><button>ILoveZian</button></a>
-    <a href="https://www.canva.com/design/DAGXprD5OzQ/tOacGtPD511ktlMVTjrPng/edit?utm_content=DAGXprD5OzQ&utm_campaign=designshare&utm_medium=link2&utm_source=sharebuttonutm_content=DAGbiYSvPTE&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h62a839dc8dutm_content=DAGYvcAiEbU&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=hf81246baa6utm_content=DAGOTb70ll0&utm_campaign=designshare&utm_medium=link&utm_source=editorutm_content=DAGMZdSsuUU&utm_campaign=designshare&utm_medium=link&utm_source=editor"><button>Presentation</button</a>
-  </address>
-</article>
 </html>
